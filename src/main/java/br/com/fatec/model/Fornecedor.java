@@ -1,8 +1,10 @@
 package br.com.fatec.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 @Entity
-public class Fornecedor extends EntidadeDominio{
+public class Fornecedor extends EntidadeDominio implements Serializable{
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nome;
@@ -21,6 +24,9 @@ public class Fornecedor extends EntidadeDominio{
 	private String IE;
 	private String CI;
 	private Calendar dataFundacao;
+	@Version
+	@Column(unique=true)
+	private long versao;
 	@Embedded
 	private Endereco endereco;
 	@ManyToMany
@@ -87,6 +93,12 @@ public class Fornecedor extends EntidadeDominio{
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public long getVersao() {
+		return versao;
+	}
+	public void setVersao(long versao) {
+		this.versao = versao;
 	}
 	
 	
