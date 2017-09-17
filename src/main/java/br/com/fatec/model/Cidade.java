@@ -1,5 +1,6 @@
 package br.com.fatec.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,7 +11,7 @@ public class Cidade extends EntidadeDominio{
 	@Id @GeneratedValue
 	private int id;
 	private String nome;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Estado estado;
 	public int getId() {
 		return id;

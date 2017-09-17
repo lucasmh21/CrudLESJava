@@ -1,36 +1,32 @@
 package br.com.fatec.model;
 
-import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 @Entity
-public class Fornecedor extends EntidadeDominio implements Serializable{
+public class Fornecedor extends EntidadeDominio{
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nome;
-	private boolean ativo;
+	private boolean ativo = true;
 	private String cnpj;
 	private String IE;
 	private String CI;
 	private Calendar dataFundacao;
 	@Version
-	@Column(unique=true)
-	private long versao;
+	private Long versao;
 	@Embedded
 	private Endereco endereco;
-	@ManyToMany
-	private List<Categoria> categoria;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	private Categoria categoria;
 	@ManyToOne
 	private HistoricoFornecedor historicoFornecedor;
 	
@@ -82,25 +78,29 @@ public class Fornecedor extends EntidadeDominio implements Serializable{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	public List<Categoria> getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(List<Categoria> categoria) {
-		this.categoria = categoria;
-	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public long getVersao() {
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+		
+	public Long getVersao() {
 		return versao;
 	}
-	public void setVersao(long versao) {
+	public void setVersao(Long versao) {
 		this.versao = versao;
 	}
-	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Nome "  + getNome() + "\nCNPJ " + getCnpj() + "\nCI " + getCI();
+	}
 	
 }

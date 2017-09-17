@@ -1,5 +1,6 @@
 package br.com.fatec.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,7 @@ public class Estado extends EntidadeDominio{
 	private int id;
 	private String nome;
 	private String UF;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Pais pais;
 	
 	

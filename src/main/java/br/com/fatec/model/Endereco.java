@@ -1,5 +1,6 @@
 package br.com.fatec.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
@@ -9,7 +10,7 @@ public class Endereco extends EntidadeDominio{
 	private String numero;
 	private String CEP;
 	private String obs;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Cidade cidade;
 	public String getRua() {
 		return rua;
