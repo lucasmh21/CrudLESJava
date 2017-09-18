@@ -16,7 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 public class JPAConfiguracao {
 	 @Bean
-	    public DataSource dataSource() {
+	   public DataSource dataSource() {
 	        DriverManagerDataSource datasource = new DriverManagerDataSource();
 	        datasource.setDriverClassName("com.mysql.jdbc.Driver");
 	        datasource.setUrl("jdbc:mysql://localhost:3306/crudLES");

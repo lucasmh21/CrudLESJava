@@ -11,7 +11,7 @@ public class Cidade extends EntidadeDominio{
 	@Id @GeneratedValue
 	private int id;
 	private String nome;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Estado estado;
 	public int getId() {
 		return id;

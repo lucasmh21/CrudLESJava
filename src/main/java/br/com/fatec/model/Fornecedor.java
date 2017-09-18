@@ -1,15 +1,16 @@
 package br.com.fatec.model;
 
 import java.util.Calendar;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 
 @Entity
 public class Fornecedor extends EntidadeDominio{
@@ -21,11 +22,10 @@ public class Fornecedor extends EntidadeDominio{
 	private String IE;
 	private String CI;
 	private Calendar dataFundacao;
-	@Version
-	private Long versao;
 	@Embedded
 	private Endereco endereco;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne
+	@Cascade(value = {CascadeType.ALL, CascadeType.DELETE, CascadeType.PERSIST})
 	private Categoria categoria;
 	@ManyToOne
 	private HistoricoFornecedor historicoFornecedor;
@@ -90,13 +90,7 @@ public class Fornecedor extends EntidadeDominio{
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-		
-	public Long getVersao() {
-		return versao;
-	}
-	public void setVersao(Long versao) {
-		this.versao = versao;
-	}
+			
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

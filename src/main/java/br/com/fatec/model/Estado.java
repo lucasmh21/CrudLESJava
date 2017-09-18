@@ -13,10 +13,8 @@ public class Estado extends EntidadeDominio{
 	private int id;
 	private String nome;
 	private String UF;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Pais pais;
-	
-	
 	public Pais getPais() {
 		return pais;
 	}

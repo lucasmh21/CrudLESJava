@@ -10,7 +10,7 @@ public class Endereco extends EntidadeDominio{
 	private String numero;
 	private String CEP;
 	private String obs;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Cidade cidade;
 	public String getRua() {
 		return rua;
